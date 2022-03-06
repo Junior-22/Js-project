@@ -3,7 +3,7 @@ let pokemonList = [
     name: 'Ivysaur',
     height: 1,
     wieght: 13,
-    types: ['grass', 'electric']
+    types: ['grass', 'poison']
   },
   {
     name: 'Sandslash',
@@ -15,12 +15,12 @@ let pokemonList = [
     name: 'Nidoqueen',
     height: 1.3,
     weight: 60,
-    types: ['bug', 'fairy']
+    types: ['poison', 'ground']
   },
   {
     name: 'Wigglytuff',
     height: 1,
     weight: 12,
-    types: ['dark', 'steel']
+    types: ['normal', 'fairy']
   }
 ];
