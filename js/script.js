@@ -25,17 +25,23 @@ let pokemonList = [
   }
 ];
 
-// loop iterates over the items in the pokemonList
+// loop iterates over the items in the pokemonList and write in DOM
 for (let i = 0; i < pokemonList.length; i++) {
- console.log(pokemonList [i]);
+  document.write("<p>" + pokemonList[i].name + "</p>" + "<p>" + pokemonList[i].height + "</p>");
+  console.log(pokemonList [i]);
 }
 
-// write in the DOM
-function newContent() {
-  document.open();
-  document.write("<h2>Ivysaur's height is 1</h2>");
-  document.write("<h2>Sandslash's height is 1</h2>");
-  document.write("<h2>Nidoqueen's height is 1.3</h2>");
-  document.write("<h2>Wigglytuff's height is 1</h2>");
-  document.close();
+// second option
+// for(let i = 0; i < pokemonList.length; i++){
+//   document.write(`${pokemonList[i].name}- height: ${pokemonList[i].height}`);
+//   console.log(pokemonList [i]);
+// }
+
+// adding a conditional
+if (pokemonList[i].height === 1) {
+  document.write("normal");
+} else if (pokemonList[i].height >= 1 && pokemonList[i].height < 1.5) {
+  document.write("That's big");
+} else {
+  document.write("good")
 }
