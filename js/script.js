@@ -26,7 +26,7 @@ let pokemonList = [
 ];
 
 // loop iterates over the items in the pokemonList, write in DOM, add a conditional
-for (let i = 0; i < pokemonList.lenght; i++) {
+for (let i = 0; i < pokemonList.length; i++) {
 
   document.write("<p>")
   document.write(pokemonList[i].name + " " + ("height is") + " " + pokemonList[i].height)
