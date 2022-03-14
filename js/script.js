@@ -25,14 +25,25 @@ let pokemonList = [
   }
 ];
 
-// loop iterates over the items in the pokemonList, write in DOM, add a conditional
-for (let i = 0; i < pokemonList.length; i++) {
+// for loop iterates over the items in the pokemonList, write in DOM, add a conditional
+// for (let i = 0; i < pokemonList.length; i++) {
+//
+//   document.write("<p>")
+//   document.write(pokemonList[i].name + " " + ("height is") + " " + pokemonList[i].height)
+//   if (pokemonList[i].height > 1.1 && pokemonList[i].height < 1.5) {
+//     document.write("--- That's big");
+//   }
+//   document.write("</p>")
+//   console.log(pokemonList[i]);
+// }
 
+// Using forEach loop, write in DOM, write conditional
+pokemonList.forEach(function(pokemon) {
   document.write("<p>")
-  document.write(pokemonList[i].name + " " + ("height is") + " " + pokemonList[i].height)
-  if (pokemonList[i].height > 1.1 && pokemonList[i].height < 1.5) {
+  document.write(pokemon.name + " " + ("height is") + pokemon.height);
+  if (pokemon.height > 1.1 && pokemon.height < 1.5) {
     document.write("--- That's big");
   }
-  document.write("</p>")
-  console.log(pokemonList[i]);
-}
+  console.log(pokemon);
+});
+document.write("</p>")
