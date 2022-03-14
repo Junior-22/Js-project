@@ -53,5 +53,5 @@ document.write("</p>")
 
 // Add item
 console.log(pokemonRepository.getAll());
-pokemonRepository.add({name: Meowth, height: o.4});
+pokemonRepository.add({name: 'Meowth', height: 0.4, weight: 4.2, types: ['Ghost, Fighting']});
 console.log(pokemonRepository.getAll());
