@@ -35,23 +35,46 @@ let pokemonRepository = (function (){
     return pokemonList;
   }
 
+  // 'addListItem' function in IIFE
+  function addListItem(pokemon) {
+    // create ul for pokemon-list in HTML
+    let myPokemons = document.querySelector('.pokemon-list');
+    // create li element
+    let listItem = document.createElement('li');
+    // create button + iinerText
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+    // add class to button
+    button.classList.add('button');
+    // add event listener
+    button.addEventListener('click', function (event) {
+      console.log(showDetails(pokemon));
+    });
+    // append button to listItem
+    listItem.appendChild(button);
+    // append listItem to ul
+    myPokemons.appendChild(listItem);
+  }
+
+// add showDetails function
+  function showDetails(pokemon) {
+    console.log(showDetails);
+  }
+
+  // return addListItem
   return {
     add: add,
-    getAll: getAll
+    getAll: getAll,
+    addListItem: addListItem
   };
 })();
-
-// Updated using forEach loop, write in DOM, write conditional
-pokemonRepository.getAll().forEach(function(pokemon) {
-  document.write("<p>")
-  document.write(pokemon.name + " " + ("height is") + pokemon.height);
-  if (pokemon.height > 1.1 && pokemon.height < 1.5) {
-    document.write("--- That's big");
-  }
-});
-document.write("</p>")
 
 // Add item
 console.log(pokemonRepository.getAll());
 pokemonRepository.add({name: 'Meowth', height: 0.4, weight: 4.2, types: ['Ghost, Fighting']});
 console.log(pokemonRepository.getAll());
+
+// 'addListItem' function inside loop
+pokemonRepository.getAll().forEach(function(pokemon) {
+  pokemonRepository.addListItem(pokemon);
+});
