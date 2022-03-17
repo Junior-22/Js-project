@@ -1,31 +1,7 @@
 // IIFE
 let pokemonRepository = (function (){
-  let pokemonList = [
-    {
-      name: 'Ivysaur',
-      height: 1,
-      weight: 13,
-      types: ['grass', 'poison']
-    },
-    {
-      name: 'Sandslash',
-      height: 1,
-      weight: 29.5,
-      types: ['ground', 'rock']
-    },
-    {
-      name: 'Wigglytuff',
-      height: 1,
-      weight: 12,
-      types: ['normal', 'fairy']
-    },
-    {
-      name: 'Nidoqueen',
-      height: 1.3,
-      weight: 60,
-      types: ['poison', 'ground']
-    }
-  ];
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   function add(pokemon) {
     pokemonList.push(pokemon);
@@ -56,25 +32,67 @@ let pokemonRepository = (function (){
     myPokemons.appendChild(listItem);
   }
 
-// add showDetails function
+  // add loadList function to fetch pokemon
+  function loadList() {
+    return fetch(apiUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error();
+    });
+  }
+
+  // add loadDeatails function
+  function loadDeatails(item) {
+    let url = item.detailsUrl;
+    return fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (details) {
+      // add details to item
+      item.imageurl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+      item.weight = details.weight;
+      item.abilities = details.abilities;
+      item.stats = details.stats;
+    })
+    .catch(function (e) {
+      console.error(e);
+    });
+  }
+
+  // add showDetails function
   function showDetails(pokemon) {
-    console.log(pokemon);
+    loadDeatails(pokemon).then(function () {
+      console.log(pokemon);
+    });
   }
 
   // return addListItem
   return {
     add: add,
     getAll: getAll,
-    addListItem: addListItem
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDeatails: loadDeatails
   };
 })();
 
-// Add item
-console.log(pokemonRepository.getAll());
-pokemonRepository.add({name: 'Meowth', height: 0.4, weight: 4.2, types: ['Ghost, Fighting']});
-console.log(pokemonRepository.getAll());
-
-// 'addListItem' function inside loop
-pokemonRepository.getAll().forEach(function(pokemon) {
-  pokemonRepository.addListItem(pokemon);
+// fills repository with pokemons
+pokemonRepository.loadList().then(function() {
+  // load data
+  pokemonRepository.getAll().forEach(function(pokemon) {
+    pokemonRepository.addListItem(pokemon);
+  });
 });
