@@ -31,6 +31,12 @@ h1 {
   font-size: 20px;
   margin: 2px 2px;
   transition-duration: 0.5s;
+}
+
+.button:hover,
+.button:focus {
+  color: black;
+  text-decoration: underline;
   cursor: pointer;
 }
 
@@ -65,23 +71,29 @@ h1 {
 }
 
 .modal {
-  margin: auto;
+  margin: 10% auto;
   display: inline-block;
   box-sizing: border-box;
-  background: #fff;
-  padding: 25px;
+  background: #936767;
+  color: #fefefe;
+  padding: 10px;
   width: 100%;
   max-width: 700px;
   text-align: center;
 }
 
-.modal-close {
+.close {
+  color: #fefefe;
   float: right;
-  -webkit-appearance: none;
-  border: 0;
-  background: none;
-  color: #777;
-  text-decoration: underline;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .modal h1 {
