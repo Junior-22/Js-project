@@ -1,6 +1,6 @@
 Pokedex App
 
-Objective
+Objective:
 Build a web application primarily with JavaScript, HTML and CSS. It has to load data from an external API and enable users to data points in a modal.
 
 Features:
