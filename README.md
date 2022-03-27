@@ -12,3 +12,5 @@ Technologies
 - HTML5
 - CSS
 - JS Bootstrap jQuery
+
+Live server: https://junior-22.github.io/Pokedex-App/
