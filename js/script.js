@@ -2,7 +2,7 @@
 let pokemonRepository = (function (){
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-  let modalContainer = document.querySelector('#modal-container');
+
   //adds a pokemon to the list
   function add(pokemon) {
     pokemonList.push(pokemon);
@@ -12,28 +12,29 @@ let pokemonRepository = (function (){
     return pokemonList;
   }
 
-  // 'addListItem' function in IIFE
+  // create button list for pokemons
   function addListItem(pokemon) {
     // create ul for pokemon-list in HTML
     let myPokemons = document.querySelector('.pokemon-list');
     // create li element
     let listItem = document.createElement('li');
-    // create button + iinerText
+    // create button + innerText
     let button = document.createElement('button');
     button.innerText = pokemon.name;
     // add class to button
     button.classList.add('button');
-    // add event listener
-    button.addEventListener('click', function (event) {
-      showDetails(pokemon);
-    });
+    listItem.classList.add('group-list-item');
     // append button to listItem
     listItem.appendChild(button);
     // append listItem to ul
     myPokemons.appendChild(listItem);
+    // add event listener click
+    button.addEventListener('click', function (event) {
+      showDetails(pokemon);
+    });
   }
 
-  // add loadList function to fetch pokemon
+  // add loadList function to fetch pokemons from API
   function loadList() {
     return fetch(apiUrl)
     .then(function (response) {
@@ -45,6 +46,7 @@ let pokemonRepository = (function (){
           name: item.name,
           detailsUrl: item.url
         };
+        // Add single pokemon to array
         add(pokemon);
       });
     }).catch(function (e) {
@@ -52,7 +54,7 @@ let pokemonRepository = (function (){
     });
   }
 
-  // add loadDeatails function
+  // load data of pokemons when clicked
   function loadDeatails(item) {
     let url = item.detailsUrl;
     return fetch(url)
@@ -63,10 +65,11 @@ let pokemonRepository = (function (){
       // add details to item
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
-      item.types = details.types;
       item.weight = details.weight;
-      item.abilities = details.abilities;
-      item.stats = details.stats;
+      item.abilities = [];
+      for (let i = 0; i < details.abilities.length; i++) {
+        item.abilities.push(details.abilities[i].ability.name);
+      }
     })
     .catch(function (e) {
       console.error(e);
@@ -85,22 +88,18 @@ let pokemonRepository = (function (){
     let titleElement = $("<h4>" + pokemon.name + "</h4>");
     let imageElement =$('<img class="modal-img" style="width:70%">');
     imageElement.attr("src", pokemon.imageUrl);
-    let heightElement = $("<p>" + "Height:" + pokemon.height + "</p>");
-    let weightElement = $("<p>" + "Weight:" + pokemon.weight + "</p>");
-    let typesElement = $("<p>" + "Types:" + pokemon.types + "</p>");
-    let abilitiesElement = $("<p>" + "Abilities:" + pokemon.abilities + "</p>");
-    let statsElement = $("<p>" + "Stats:" + pokemon.stats + "</p>");
+    let heightElement = $("<p>" + "Height:" + " " + (pokemon.height * 10 + "cm") + "</p>");
+    let weightElement = $("<p>" + "Weight:" + " " + (pokemon.weight / 10 + "kg") + "</p>");
+    let abilitiesElement = $("<p>" + "Abilities:" + " " + pokemon.abilities + "</p>");
 
     modalTitle.append(titleElement);
     modalBody.append(imageElement);
     modalBody.append(heightElement);
     modalBody.append(weightElement);
-    modalBody.append(typesElement);
     modalBody.append(abilitiesElement);
-    modalBody.append(statsElement);
   }
 
-  // add showDetails function
+  // loads data from the pokemon server
   function showDetails(pokemon) {
     loadDeatails(pokemon).then(function () {
       showModal(pokemon);
@@ -113,7 +112,8 @@ let pokemonRepository = (function (){
     getAll: getAll,
     addListItem: addListItem,
     loadList: loadList,
-    loadDeatails: loadDeatails
+    loadDeatails: loadDeatails,
+    showDetails: showDetails
   };
 })();
 
