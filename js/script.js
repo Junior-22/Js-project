@@ -34,6 +34,29 @@ let pokemonRepository = (function (){
     });
   }
 
+  // find pokemon in search bar
+  function setList(results) {
+    for (let item of results) {
+      let resultItem = document.createElement("li");
+      resultItem.classList.add("result-item");
+      let text = document.createTextNode(pokemonList.name);
+      resultItem.appendChild(text);
+      list.appendChild(resultItem);
+    }
+  }
+
+  // add event listener for search bar
+  let searchInput = document.querySelector(".input");
+  searchInput.addEventListener("input", (e) => {
+    let value = e.target.value
+    if (value && value.trim().length > 0) {
+      value = value.trim().toLowerCase()
+      list(pokemonList.filter(pokemonList => {
+        return pokemonList.name.includes(value)
+      }))
+    } else {}
+  });
+
   // add loadList function to fetch pokemons from API
   function loadList() {
     return fetch(apiUrl)
