@@ -7,7 +7,7 @@ h1 {
 }
 
 /* style for pokemon button */
-.button {
+button.btn-dark {
   background-color: brown;
   color: white;
   border: solid black;
@@ -24,11 +24,9 @@ h1 {
   transition-duration: 0.5s;
 }
 
-.button:hover,
-.button:focus {
-  color: black;
+button.btn-dark:hover,
+button.btn-dark:focus {
   text-decoration: underline;
-  cursor: pointer;
 }
 
 .pokemon-list {
