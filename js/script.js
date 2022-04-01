@@ -27,20 +27,14 @@ let pokemonRepository = (function() {
   });
 
   function searchPokemon(pokemonList, value) {
-    let filteredPokemons = pokemonList.filter(function(pokemon) {
-      if (pokemon.name.includes(value)) {
-        return pokemon;
-      }
-    });
-    console.log(filteredPokemons);
-    let oldPokemonList = document.querySelector(".pokemon-list");
-    while (oldPokemonList.hasChildNodes()) {
-      oldPokemonList.removeChild(oldPokemonList.firstChild);
-    }
-    for (let i = 0; i < filteredPokemons.length; i++) {
-      addListItem(filteredPokemons[i]);
-      console.log(filteredPokemons[i]);
-    }
+    let myPokemons = $(".pokemon-list");
+    myPokemons.empty();
+    const filteredPokemons = pokemonList.filter(pokemon =>
+      pokemon.name.includes(value)
+    );
+    if (filteredPokemons.length)
+      filteredPokemons.forEach(pokemon => addListItem(pokemon));
+    else pokemonList.forEach(pokemon => addListItem(pokemon));
   }
 
   // create button list for pokemons
@@ -60,7 +54,7 @@ let pokemonRepository = (function() {
     // append listItem to ul
     myPokemons.appendChild(listItem);
     // add event listener click
-    button.addEventListener("click", function(event) {
+    button.addEventListener("click", function() {
       showDetails(pokemon);
     });
   }
