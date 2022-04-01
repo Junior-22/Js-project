@@ -1,0 +1,51 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 3 version
+*/
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* style for pokemon button */
+button.btn-dark {
+  background-color: brown;
+  color: white;
+  border: solid black;
+  border-radius: 50px;
+  height: 100px;
+  width: 200px;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: capitalize;
+  display: inline-block;
+  font-size: 25px;
+  margin: 2px 2px;
+  -webkit-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+
+button.btn-dark:hover,
+button.btn-dark:focus {
+  text-decoration: underline;
+}
+
+.pokemon-list {
+  list-style: none;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 10px 1fr 10px 1fr 10px 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  margin: 30px 70px 70px 70px;
+}
