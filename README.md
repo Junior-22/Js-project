@@ -1,15 +1,20 @@
-**Pokedex App**
+# Pokedex App
 
 As part of my learning procees in web development, I built an app displaying pokemons gotten from an API. Users can search for pokemons by name and click on a pokemon for additional info about the pokemon.
 
-**Features**
+## Features
+
 - Load data from an API
 - Display a list of pokemons
 - Modal view with details of pokemon items.
 
-**Technologies**
+## Technologies
+
 - HTML5
 - CSS
-- JS Bootstrap jQuery
+- JS
+- Bootstrap
+- jQuery
 
 **Live server:** https://junior-22.github.io/Pokedex-App/
+[Live server](https://junior-22.github.io/Pokedex-App/)
