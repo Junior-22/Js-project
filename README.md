@@ -16,5 +16,4 @@ As part of my learning process in web development, I built an app displaying pok
 - Bootstrap
 - jQuery
 
-**Live server:** https://junior-22.github.io/Pokedex-App/
 [Live server](https://junior-22.github.io/Pokedex-App/)
