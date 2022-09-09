@@ -1,6 +1,6 @@
 # Pokedex App
 
-/img/pokedex.png
+/assets/img/pokedex.png
 
 As part of my learning process in web development, I built an app displaying pokemons gotten from an API. Users can search for pokemons by name and click on a pokemon for additional info about the pokemon.
 
